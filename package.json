@@ -1,0 +1,22 @@
+{
+  "name": "synthetic-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watchAll",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "Laura Nemeth",
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^2.13.0",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^9.4.0"
+  },
+  "devDependencies": {
+    "jest": "^26.4.2",
+    "supertest": "^5.0.0"
+  }
+}
