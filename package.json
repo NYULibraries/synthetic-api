@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watchAll",
+    "test": "jest --coverage",
     "dev": "nodemon app.js"
   },
   "keywords": [],
@@ -16,6 +16,7 @@
     "koa-router": "^9.4.0"
   },
   "devDependencies": {
+    "eslint": "^7.10.0",
     "jest": "^26.5.2",
     "supertest": "^5.0.0"
   }
