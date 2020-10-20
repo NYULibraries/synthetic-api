@@ -1,5 +1,5 @@
 const Koa = require('koa');
-const cors = require('@koa/cors')
+const cors = require('@koa/cors');
 const Router = require('koa-router');
 const server = new Koa();
 const router = new Router();
@@ -9,9 +9,10 @@ server.use(bodyParser())
 
 router.post('/', ctx => {
   ctx.body = ctx.request.body;
+  console.log(ctx.body)
 });
 
-server
+module.exports = server
   .use(router.routes())
   .use(router.allowedMethods())
   .use(cors())
