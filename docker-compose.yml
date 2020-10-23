@@ -1,6 +1,13 @@
 version: "3.8"
 services:
-  web:
+  dev:
     build: .
     ports:
       - "3003:3003"
+    depends_on: 
+      - memcached
+    env_file: 
+      - test.env
+  
+  memcached:
+    image: memcached:alpine
