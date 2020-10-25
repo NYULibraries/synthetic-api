@@ -13,7 +13,7 @@ server.use(bodyParser());
 router.post('/', ctx => {
   ctx.body = ctx.request.body;
   console.log(ctx.body)
-  memcached.add('foo', 'bar', 10);
+  memcached.add('foo', 'bar', 10, (err) => {} );
   memcached.get('foo', (err, data) => { console.log(data) });
 });
 
