@@ -10,4 +10,7 @@ services:
       - test.env
   
   memcached:
-    image: memcached:alpine
+    image: memcached
+  
+  telnet:
+    image: mikesplain/telnet
