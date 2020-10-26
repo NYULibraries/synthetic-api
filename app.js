@@ -12,9 +12,12 @@ server.use(bodyParser());
 
 router.post('/', ctx => {
   ctx.body = ctx.request.body;
-  console.log(ctx.body)
-  memcached.add('foo', 'bar', 10, (err) => {} );
-  memcached.get('foo', (err, data) => { console.log(data) });
+  const testedCase = ctx.body.params.case
+  const testedUrl = ctx.body.params.url
+  memcached.add("case", testedCase, 100, (err) => {} );
+  memcached.add("url", testedUrl, 100, (err) => {} );
+  console.log(testedUrl, testedCase)
+  memcached.get("case", (err, data) => { console.log(data) })
 });
 
 module.exports = server
