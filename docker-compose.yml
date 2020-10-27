@@ -6,6 +6,7 @@ services:
       - "3003:3003"
     depends_on: 
       - memcached
+      - prometheus_exporter
     env_file: 
       - test.env
   
@@ -14,3 +15,11 @@ services:
   
   telnet:
     image: mikesplain/telnet
+
+  prometheus_exporter:
+    image: prom/memcached-exporter:v0.7.0
+    ports:
+      - "9150:9150"
+    depends_on:
+      - memcached
+
