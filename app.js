@@ -12,16 +12,14 @@ server.use(bodyParser());
 
 router.post('/', ctx => {
   ctx.body = ctx.request.body;
-  const testedCase = ctx.body.params.case
-  const testedUrl = ctx.body.params.url
-  memcached.add("case", testedCase, 100, (err) => {} );
-  memcached.add("url", testedUrl, 100, (err) => {} );
-  console.log(testedUrl, testedCase)
-  memcached.get("case", (err, data) => { console.log(data) })
+  const testedCase = ctx.body.case
+  const testedUrl = ctx.body.app
+  memcached.add(testedUrl, testedCase, 1000, (err) => {} );
+  memcached.get(testedUrl, (err, data) => { console.log("data is here:", data) })
 });
 
 module.exports = server
   .use(router.routes())
   .use(router.allowedMethods())
   .use(cors())
-  .listen(3003);
+  .listen(3003)
