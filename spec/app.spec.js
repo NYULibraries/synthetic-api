@@ -13,16 +13,16 @@ describe('POST api request', () => {
     expect(res.status).toBe(200);
     done();
   });
-    it('should contain app tested + failure type', async done => {
-      const params = {
-        case: 'status',
-        actual: 404,
-        expected: 400,
-        url: 'https://bobcat.library.nyu.edu/this/is/a/test/please/ignore'
-       }
-      const result = "{\"case\":\"status\",\"actual\":404,\"expected\":400,\"url\":\"https://bobcat.library.nyu.edu/this/is/a/test/please/ignore\"}"
-      const res = await request.post('/').send(params);
-      expect(res.text).toBe(result);
-      done();
-    });
+  it('should contain app tested + failure type', async done => {
+    const params = {
+      case: 'status',
+      actual: 404,
+      expected: 400,
+      url: 'https://bobcat.library.nyu.edu/this/is/a/test/please/ignore'
+      }
+    const result = "{\"case\":\"status\",\"actual\":404,\"expected\":400,\"url\":\"https://bobcat.library.nyu.edu/this/is/a/test/please/ignore\"}"
+    const res = await request.post('/').send(params);
+    expect(res.text).toBe(result);
+    done();
+  });
   });
