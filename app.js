@@ -1,15 +1,25 @@
 const Koa = require('koa');
+const cors = require('@koa/cors');
 const Router = require('koa-router');
-const logger = require('koa-logger');
-const app = new Koa();
+const server = new Koa();
 const router = new Router();
+const bodyParser = require('koa-bodyparser');
+const Memcached = require('memcached');
 
-app.use(logger());
+const memcached = new Memcached(process.env.MEMCACHE_SERVERS, {retries:10,retry:10000,remove:true,failOverServers:['192.168.0.103:11211']});
 
-router.post('/', (ctx, next) => {
- ctx.body = 'Hello World!';
+server.use(bodyParser());
+
+router.post('/', ctx => {
+  ctx.body = ctx.request.body;
+  const testedCase = ctx.body.case
+  const testedUrl = ctx.body.app
+  memcached.add(testedUrl, testedCase, 1000, (err) => {} );
+  memcached.get(testedUrl, (err, data) => { console.log("data is here:", data) })
 });
 
-app.use(router.routes());
-app.use(router.allowedMethods());
-app.listen(3000);
+module.exports = server
+  .use(router.routes())
+  .use(router.allowedMethods())
+  .use(cors())
+  .listen(3003)
